@@ -5,17 +5,23 @@
  */
 package vezerlok;
 
+import java.util.Random;
+
+
+
 /**
  *
  * @author Szilvi
  */
 public class CsoportMunka extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form CsoportMunka
      */
     public CsoportMunka() {
         initComponents();
+        randomGenerator();
     }
 
     /**
@@ -28,48 +34,76 @@ public class CsoportMunka extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnellenorzes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        lbfeladatok = new javax.swing.JLabel();
+        lbJoRossz = new javax.swing.JLabel();
+        txtfmegoldas = new javax.swing.JTextField();
+        btnujra = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mnosztas = new javax.swing.JMenu();
+        mniosszead = new javax.swing.JMenuItem();
+        mnikivon = new javax.swing.JMenuItem();
+        mniszoroz = new javax.swing.JMenuItem();
+        mniosztas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setText("Megoldásod:");
 
-        jButton2.setText("Ellenőrzés");
+        btnellenorzes.setText("Ellenőrzés");
+        btnellenorzes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnellenorzesActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Feladat:");
+        lbfeladatok.setText("Feladat:");
 
-        jLabel4.setText("Jó/Rossz");
+        lbJoRossz.setText("Jó vagy Rossz");
 
-        jTextField1.setText("jTextField1");
+        btnujra.setText("Újra");
+        btnujra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnujraActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Újra");
+        mnosztas.setText("Feladatok");
 
-        jMenu1.setText("Feladatok");
+        mniosszead.setText("Összeadás");
+        mniosszead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniosszeadActionPerformed(evt);
+            }
+        });
+        mnosztas.add(mniosszead);
 
-        jMenuItem1.setText("Összeadás");
-        jMenu1.add(jMenuItem1);
+        mnikivon.setText("Kivonás");
+        mnikivon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnikivonActionPerformed(evt);
+            }
+        });
+        mnosztas.add(mnikivon);
 
-        jMenuItem2.setText("Kivonás");
-        jMenu1.add(jMenuItem2);
+        mniszoroz.setText("Szorzás");
+        mniszoroz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniszorozActionPerformed(evt);
+            }
+        });
+        mnosztas.add(mniszoroz);
 
-        jMenuItem3.setText("Szorzás");
-        jMenu1.add(jMenuItem3);
+        mniosztas.setText("Osztás");
+        mniosztas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniosztasActionPerformed(evt);
+            }
+        });
+        mnosztas.add(mniosztas);
 
-        jMenuItem4.setText("Osztás");
-        jMenu1.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnosztas);
 
         setJMenuBar(jMenuBar1);
 
@@ -84,43 +118,158 @@ public class CsoportMunka extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(81, 81, 81)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(52, 52, 52))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnellenorzes)
+                                .addGap(77, 77, 77)
+                                .addComponent(btnujra))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbfeladatok)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtfmegoldas, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(lbJoRossz, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(lbfeladatok)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addGap(42, 42, 42)
+                    .addComponent(txtfmegoldas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lbJoRossz)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnellenorzes)
+                    .addComponent(btnujra))
                 .addGap(52, 52, 52))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+  Random rnd = new Random();
+  int szam1=0;
+  int szam2=0;
+  double eredmeny=0;
+  int muveletTipus=0;
+  
+     
+    private void randomGenerator()
+    {
+    szam1=rnd.nextInt(10)+1;
+    szam2=rnd.nextInt(10)+1;
+    
+    if(muveletTipus==0)
+    {
+    eredmeny=szam1*szam2;
+     lbfeladatok.setText(szam1+" * "+szam2);  
+    }
+    else if(muveletTipus==1)
+    {
+    eredmeny=szam1-szam2;
+    lbfeladatok.setText(szam1+" - "+szam2); 
+    }
+    else if(muveletTipus==2)
+    {
+    eredmeny=szam1+szam2;
+    lbfeladatok.setText(szam1+" + "+szam2); 
+    }
+    else
+    {
+      eredmeny=szam1/szam2;
+      lbfeladatok.setText(szam1+" / "+szam2); 
+    }
+    
+    
+    
+    }
+  
+    private void mniosszeadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniosszeadActionPerformed
+        szam1=rnd.nextInt(10)+1;
+    szam2=rnd.nextInt(10)+1;
+        muveletTipus=2;
+       
+         eredmeny=szam1+szam2;
+    lbfeladatok.setText(szam1+" + "+szam2); 
+    
+         
+    }//GEN-LAST:event_mniosszeadActionPerformed
+
+    private void btnujraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnujraActionPerformed
+         szam1=rnd.nextInt(10)+1;
+    szam2=rnd.nextInt(10)+1;
+    
+    if(muveletTipus==0)
+    {
+    eredmeny=szam1*szam2;
+     lbfeladatok.setText(szam1+" * "+szam2);  
+    }
+    else if(muveletTipus==1)
+    {
+    eredmeny=szam1-szam2;
+    lbfeladatok.setText(szam1+" - "+szam2); 
+    }
+    else if(muveletTipus==2)
+    {
+    eredmeny=szam1+szam2;
+    lbfeladatok.setText(szam1+" + "+szam2); 
+    }
+    else
+    {
+      eredmeny=szam1/szam2;
+      lbfeladatok.setText(szam1+" / "+szam2); 
+    }      
+                
+    
+    }//GEN-LAST:event_btnujraActionPerformed
+    private void btnellenorzesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnellenorzesActionPerformed
+      int megoldas=   Integer.parseInt(txtfmegoldas.getText());
+      if(megoldas==eredmeny)
+      {
+      lbJoRossz.setText("Jó megoldás");
+      }
+      else 
+      {
+      lbJoRossz.setText("Rossz megoldás");
+      }
+    }//GEN-LAST:event_btnellenorzesActionPerformed
+
+    private void mniosztasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniosztasActionPerformed
+      szam1=rnd.nextInt(10)+1;
+    szam2=rnd.nextInt(10)+1;
+          muveletTipus=3;
+           
+           eredmeny=szam1/szam2;
+      lbfeladatok.setText(szam1+" / "+szam2);
+    }//GEN-LAST:event_mniosztasActionPerformed
+
+    private void mnikivonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnikivonActionPerformed
+        szam1=rnd.nextInt(10)+1;
+    szam2=rnd.nextInt(10)+1;
+        muveletTipus=1;
+         
+         eredmeny=szam1-szam2;
+    lbfeladatok.setText(szam1+" - "+szam2);
+    }//GEN-LAST:event_mnikivonActionPerformed
+
+    private void mniszorozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniszorozActionPerformed
+        szam1=rnd.nextInt(10)+1;
+    szam2=rnd.nextInt(10)+1;
+        muveletTipus=0;
+         
+         eredmeny=szam1*szam2;
+     lbfeladatok.setText(szam1+" * "+szam2);
+    }//GEN-LAST:event_mniszorozActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,18 +307,20 @@ public class CsoportMunka extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnellenorzes;
+    private javax.swing.JButton btnujra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbJoRossz;
+    private javax.swing.JLabel lbfeladatok;
+    private javax.swing.JMenuItem mnikivon;
+    private javax.swing.JMenuItem mniosszead;
+    private javax.swing.JMenuItem mniosztas;
+    private javax.swing.JMenuItem mniszoroz;
+    private javax.swing.JMenu mnosztas;
+    private javax.swing.JTextField txtfmegoldas;
     // End of variables declaration//GEN-END:variables
+
+
 }
